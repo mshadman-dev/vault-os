@@ -1,0 +1,20 @@
+/**
+ * LandingCanvas — positions the canvas as a full-bleed background layer.
+ * pointer-events: none ensures it never blocks hero content interaction.
+ */
+.root {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  /* Sit behind all content */
+  z-index: 0;
+}
+
+.root canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
