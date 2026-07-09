@@ -4,6 +4,7 @@
  * router definitions, NavLink `to` props, and programmatic navigation.
  */
 export const PATHS = {
+  // ── App routes (protected) ──────────────────────────────────────────────
   DASHBOARD: '/',
   INCOME: '/income',
   EXPENSES: '/expenses',
@@ -12,6 +13,11 @@ export const PATHS = {
   SAVINGS: '/savings',
   TIMELINE: '/timeline',
   SETTINGS: '/settings',
+
+  // ── Auth routes (public) ────────────────────────────────────────────────
+  LOGIN: '/login',
+  SIGNUP: '/signup',
+  FORGOT_PASSWORD: '/forgot-password',
 } as const
 
 export type AppPath = (typeof PATHS)[keyof typeof PATHS]

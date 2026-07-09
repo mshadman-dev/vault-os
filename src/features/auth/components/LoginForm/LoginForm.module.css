@@ -1,0 +1,26 @@
+/**
+ * LoginForm — form-level styles.
+ * Most styling is handled by the shared form primitives.
+ */
+.globalError {
+  padding: 10px 14px;
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 8px;
+  font-size: 13px;
+  color: #ef4444;
+  line-height: 1.5;
+}
+
+.forgotLink {
+  display: block;
+  text-align: right;
+  font-size: 13px;
+  color: var(--shell-electric-blue);
+  text-decoration: none;
+  margin-top: -12px;
+}
+
+.forgotLink:hover {
+  text-decoration: underline;
+}

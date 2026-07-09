@@ -29,3 +29,12 @@ export {
   savingsSchema,
   type SavingsFormValues,
 } from './savings.schema'
+
+export {
+  loginSchema,
+  type LoginFormValues,
+  signupSchema,
+  type SignupFormValues,
+  forgotPasswordSchema,
+  type ForgotPasswordFormValues,
+} from './auth.schema'

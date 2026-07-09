@@ -1,0 +1,22 @@
+/**
+ * SignupForm — form-level styles.
+ */
+.globalError {
+  padding: 10px 14px;
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 8px;
+  font-size: 13px;
+  color: #ef4444;
+  line-height: 1.5;
+}
+
+.successBanner {
+  padding: 14px;
+  background: rgba(34, 197, 94, 0.08);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  border-radius: 8px;
+  font-size: 13px;
+  color: #16a34a;
+  line-height: 1.5;
+}
