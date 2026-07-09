@@ -17,12 +17,16 @@ import { BudgetsPage } from './features/budgets/BudgetsPage'
 import { SavingsPage } from './features/savings/SavingsPage'
 import { TimelinePage } from './features/timeline/TimelinePage'
 import { SettingsPage } from './features/settings/SettingsPage'
+import { LandingPage } from './features/landing/LandingPage'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <AuthProvider>
       <BrowserRouter>
         <Routes>
+          {/* ── Public landing — authenticated users redirect to dashboard ── */}
+          <Route path={PATHS.LANDING} element={<LandingPage />} />
+
           {/* ── Public auth routes — redirect to dashboard if already signed in ── */}
           <Route element={<AuthGuard requireAuth={false} />}>
             <Route path={PATHS.LOGIN} element={<LoginPage />} />
@@ -33,7 +37,7 @@ createRoot(document.getElementById('root')!).render(
           {/* ── Protected app routes — redirect to /login if not signed in ── */}
           <Route element={<AuthGuard requireAuth={true} />}>
             <Route element={<AppLayout />}>
-              <Route index element={<DashboardPage />} />
+              <Route path={PATHS.DASHBOARD} element={<DashboardPage />} />
               <Route path={PATHS.INCOME} element={<IncomePage />} />
               <Route path={PATHS.EXPENSES} element={<ExpensesPage />} />
               <Route path={PATHS.ANALYTICS} element={<AnalyticsPage />} />

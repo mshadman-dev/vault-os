@@ -1,0 +1,252 @@
+/**
+ * DashboardPreview — a stylised mock of the app UI.
+ * Draws attention with a glowing browser chrome effect.
+ */
+
+.section {
+  padding: 80px 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #007aff;
+  margin: 0 0 14px;
+}
+
+.heading {
+  font-size: clamp(26px, 4vw, 40px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: #f9fafb;
+  margin: 0 0 12px;
+}
+
+.subheading {
+  font-size: 16px;
+  color: #9ca3af;
+  max-width: 480px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Browser chrome wrapper */
+.browserWrap {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 0 0 1px rgba(0, 122, 255, 0.15),
+    0 40px 100px rgba(0, 0, 0, 0.5),
+    0 0 80px rgba(0, 122, 255, 0.08);
+}
+
+.chrome {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: rgba(20, 21, 28, 0.95);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dotRed    { background: #ff5f57; }
+.dotYellow { background: #febc2e; }
+.dotGreen  { background: #28c840; }
+
+.urlBar {
+  flex: 1;
+  max-width: 280px;
+  margin: 0 auto;
+  padding: 5px 14px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 12px;
+  color: #6b7280;
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+/* Mock dashboard content */
+.mockContent {
+  background: #0a0a0a;
+  padding: 24px;
+  display: flex;
+  gap: 16px;
+}
+
+/* Sidebar mock */
+.mockSidebar {
+  width: 56px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+@media (min-width: 600px) {
+  .mockSidebar {
+    width: 160px;
+  }
+}
+
+.sidebarLogo {
+  height: 28px;
+  border-radius: 6px;
+  background: #007aff;
+  margin-bottom: 8px;
+  width: 28px;
+}
+
+@media (min-width: 600px) {
+  .sidebarLogo {
+    width: 100%;
+  }
+}
+
+.navItem {
+  height: 28px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.navItemActive {
+  background: rgba(0, 122, 255, 0.15);
+  border: 1px solid rgba(0, 122, 255, 0.25);
+}
+
+/* Main area mock */
+.mockMain {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Hero balance card mock */
+.heroCard {
+  padding: 20px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  position: relative;
+  overflow: hidden;
+}
+
+.heroCard::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 60% 50% at 85% 10%,
+    rgba(0, 122, 255, 0.1) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.mockLabel {
+  width: 80px;
+  height: 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.15);
+  margin-bottom: 8px;
+}
+
+.mockValue {
+  width: 150px;
+  height: 24px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* 2-col metric row */
+.metricRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.metricCard {
+  padding: 16px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.metricCard.income {
+  border-color: rgba(34, 197, 94, 0.2);
+  background: rgba(34, 197, 94, 0.04);
+}
+
+.metricCard.expense {
+  border-color: rgba(239, 68, 68, 0.2);
+  background: rgba(239, 68, 68, 0.04);
+}
+
+.mockBar {
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.08);
+  margin-top: 12px;
+  overflow: hidden;
+}
+
+.mockBarFill {
+  height: 100%;
+  border-radius: 3px;
+  width: 65%;
+}
+
+.mockBarFill.green { background: #22c55e; }
+.mockBarFill.red   { background: #ef4444; }
+
+/* Chart placeholder */
+.chartCard {
+  padding: 16px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  height: 80px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.chartBar {
+  flex: 1;
+  border-radius: 3px 3px 0 0;
+  background: rgba(0, 122, 255, 0.25);
+  min-height: 8px;
+}
+
+.chartBar:nth-child(1) { height: 45%; }
+.chartBar:nth-child(2) { height: 70%; }
+.chartBar:nth-child(3) { height: 55%; }
+.chartBar:nth-child(4) { height: 85%; }
+.chartBar:nth-child(5) { height: 60%; }
+.chartBar:nth-child(6) { height: 75%; }
+.chartBar:nth-child(7) { height: 50%; background: rgba(0, 122, 255, 0.5); }
