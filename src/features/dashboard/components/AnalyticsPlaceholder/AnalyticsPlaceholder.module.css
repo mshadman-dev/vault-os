@@ -1,0 +1,41 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 48px 24px;
+  border-radius: 14px;
+  background: var(--shell-bg);
+  border: 1px solid var(--border);
+  border-style: dashed;
+  box-sizing: border-box;
+  width: 100%;
+  text-align: center;
+  min-height: 160px;
+}
+
+.icon {
+  color: var(--text);
+  opacity: 0.4;
+}
+
+.title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-h);
+  margin: 0;
+}
+
+.description {
+  font-size: 13px;
+  color: var(--text);
+  margin: 0;
+  max-width: 280px;
+}
+
+@media (min-width: 768px) {
+  .card {
+    min-height: 200px;
+  }
+}

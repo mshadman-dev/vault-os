@@ -1,0 +1,60 @@
+.topNav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  height: var(--shell-topnav-height);
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  gap: 12px;
+  box-sizing: border-box;
+
+  /* Frosted glass */
+  background: rgba(10, 10, 10, 0.7);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Hamburger: only visible on mobile */
+.menuButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-h);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.15s ease;
+}
+
+.menuButton:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.menuButton:focus-visible {
+  outline: 2px solid var(--shell-electric-blue);
+  outline-offset: 2px;
+}
+
+/* Hide hamburger on tablet+ */
+@media (min-width: 768px) {
+  .menuButton {
+    display: none;
+  }
+}
+
+.titleSlot {
+  flex: 1;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
