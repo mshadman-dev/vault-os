@@ -19,6 +19,9 @@ export type { DashboardState, DashboardActions, TimeRange } from './dashboard.st
 export { useSettingsStore } from './settings.store'
 export type { SettingsState, SettingsActions, Theme, CurrencyCode, LocaleTag } from './settings.store'
 
+export { useTransactionsStore } from './transactions.store'
+export type { TransactionsState, TransactionsActions, Transaction } from './transactions.store'
+
 // ─── Selectors ────────────────────────────────────────────────────────────────
 
 export {
@@ -39,6 +42,11 @@ export {
   selectLocale,
   selectCompactMode,
   selectSettingsActions,
+  // Transactions
+  selectTotalIncome,
+  selectTotalExpense,
+  selectBalance,
+  selectRecentTransactions,
 } from './selectors'
 
 // ─── Persistence ──────────────────────────────────────────────────────────────

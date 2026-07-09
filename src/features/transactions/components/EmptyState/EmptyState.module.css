@@ -1,0 +1,47 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 32px 16px;
+  text-align: center;
+}
+
+.icon {
+  color: var(--text);
+  opacity: 0.4;
+  flex-shrink: 0;
+}
+
+.message {
+  font-size: 14px;
+  color: var(--text);
+  margin: 0;
+  max-width: 280px;
+  line-height: 1.5;
+}
+
+.addButton {
+  margin-top: 4px;
+  padding: 8px 20px;
+  border-radius: 8px;
+  border: 1px solid var(--shell-electric-blue);
+  background: transparent;
+  color: var(--shell-electric-blue);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.addButton:hover,
+.addButton:focus-visible {
+  background: var(--shell-electric-blue);
+  color: #fff;
+  outline: none;
+}
+
+.addButton:focus-visible {
+  outline: 2px solid var(--shell-electric-blue);
+  outline-offset: 2px;
+}
