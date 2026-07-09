@@ -1,0 +1,102 @@
+/**
+ * FormActions — submit / cancel button row styles.
+ */
+.actions {
+  display: flex;
+  gap: 12px;
+  padding-top: 4px;
+}
+
+.actions.alignRight {
+  justify-content: flex-end;
+}
+
+.actions.alignLeft {
+  justify-content: flex-start;
+}
+
+.actions.alignCenter {
+  justify-content: center;
+}
+
+.actions.stackMobile {
+  @media (max-width: 480px) {
+    flex-direction: column-reverse;
+  }
+}
+
+/* ── Button base ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: inherit;
+  line-height: 1;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    opacity 0.15s ease,
+    box-shadow 0.15s ease;
+  outline: none;
+  white-space: nowrap;
+}
+
+.btn:focus-visible {
+  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.35);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ── Primary (submit) ── */
+.btnPrimary {
+  background: var(--shell-electric-blue);
+  color: #fff;
+}
+
+.btnPrimary:hover:not(:disabled) {
+  background: #0066d6;
+}
+
+/* ── Secondary (cancel / ghost) ── */
+.btnSecondary {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--text-h);
+}
+
+.btnSecondary:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* ── Full-width modifier ── */
+.btnFull {
+  width: 100%;
+}
+
+/* ── Loading spinner ── */
+.spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
