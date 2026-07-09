@@ -1,0 +1,135 @@
+/* Native dialog reset + overlay */
+.dialogRoot {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  padding: 0;
+  border: none;
+  background: transparent;
+  max-width: 480px;
+  width: calc(100% - 32px);
+  max-height: calc(100vh - 48px);
+  overflow: visible;
+  border-radius: 0;
+  /* Override browser default dialog positioning */
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.dialogRoot::backdrop {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(2px);
+}
+
+/* Inner card */
+.panel {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.3),
+    0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Header */
+.dialogHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 20px 16px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.dialogTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-h);
+  margin: 0;
+  letter-spacing: -0.2px;
+}
+
+.closeBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.closeBtn:hover {
+  background: var(--border);
+  color: var(--text-h);
+}
+
+.closeBtn:focus-visible {
+  outline: 2px solid var(--shell-electric-blue);
+  outline-offset: 2px;
+}
+
+/* Type indicator (edit mode) */
+.typeIndicator {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.typeLabel {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.typeBadge {
+  display: inline-flex;
+  padding: 3px 10px;
+  border-radius: 99px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.typeBadgeIncome {
+  background: rgba(34, 197, 94, 0.12);
+  color: #22c55e;
+}
+
+.typeBadgeExpense {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+
+/* Fields */
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px;
+}
+
+/* FormActions bottom padding */
+.formFooter {
+  padding: 0 20px 20px;
+}
+
+@media (min-width: 480px) {
+  .dialogRoot {
+    width: calc(100% - 48px);
+  }
+}

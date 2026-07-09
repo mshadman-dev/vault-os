@@ -15,6 +15,7 @@
 import type { UIState, UIActions } from './ui.store'
 import type { DashboardState, DashboardActions } from './dashboard.store'
 import type { SettingsState, SettingsActions } from './settings.store'
+import type { TransactionsState, TransactionsActions, Transaction } from './transactions.store'
 
 // ─── UI selectors ─────────────────────────────────────────────────────────────
 
@@ -95,3 +96,25 @@ export const selectSettingsActions = (
   setLocale: s.setLocale,
   setCompactMode: s.setCompactMode,
 })
+
+// ─── Transaction selectors ────────────────────────────────────────────────────
+
+export const selectTotalIncome = (s: TransactionsState & TransactionsActions): number =>
+  s.transactions
+    .filter((t: Transaction) => t.type === 'income')
+    .reduce((sum: number, t: Transaction) => sum + t.amount, 0)
+
+export const selectTotalExpense = (s: TransactionsState & TransactionsActions): number =>
+  s.transactions
+    .filter((t: Transaction) => t.type === 'expense')
+    .reduce((sum: number, t: Transaction) => sum + t.amount, 0)
+
+export const selectBalance = (s: TransactionsState & TransactionsActions): number =>
+  selectTotalIncome(s) - selectTotalExpense(s)
+
+export const selectRecentTransactions =
+  (limit = 5) =>
+  (s: TransactionsState & TransactionsActions): Transaction[] =>
+    [...s.transactions]
+      .sort((a: Transaction, b: Transaction) => new Date(b.date).getTime() - new Date(a.date).getTime())
+      .slice(0, limit)

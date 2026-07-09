@@ -15,6 +15,7 @@ import { type PersistOptions, type StorageValue } from 'zustand/middleware'
 /** Keys written to localStorage by this app. */
 export const STORAGE_KEYS = {
   SETTINGS: 'vault-os/settings',
+  TRANSACTIONS: 'vault-os/transactions',
 } as const
 
 /**
