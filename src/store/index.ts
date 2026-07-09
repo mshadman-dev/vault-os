@@ -10,6 +10,9 @@
 
 // ─── Stores ───────────────────────────────────────────────────────────────────
 
+export { useAuthStore } from './auth.store'
+export type { AuthState, AuthActions } from './auth.store'
+
 export { useUIStore } from './ui.store'
 export type { UIState, UIActions } from './ui.store'
 
