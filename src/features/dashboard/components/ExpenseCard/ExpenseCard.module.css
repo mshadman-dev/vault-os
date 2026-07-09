@@ -1,0 +1,75 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px;
+  border-radius: 14px;
+  background: var(--shell-bg);
+  border: 1px solid var(--border);
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+
+.icon {
+  color: #ef4444; /* expense red */
+  flex-shrink: 0;
+}
+
+.value {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.8px;
+  color: var(--text-h);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.trend {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.trendUp {
+  color: #22c55e;
+}
+
+.trendDown {
+  color: #ef4444;
+}
+
+.trendNeutral {
+  color: var(--text);
+}
+
+.trendIcon {
+  flex-shrink: 0;
+}
+
+@media (min-width: 1024px) {
+  .card {
+    padding: 24px;
+  }
+
+  .value {
+    font-size: 32px;
+  }
+}

@@ -1,0 +1,1 @@
+export { RecentTransactionsPlaceholder } from './RecentTransactionsPlaceholder'

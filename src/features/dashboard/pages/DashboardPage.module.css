@@ -1,0 +1,68 @@
+/* ── Dashboard page root ── */
+.root {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Page title area */
+.pageHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.pageTitle {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--text-h);
+  margin: 0;
+}
+
+.pageSubtitle {
+  font-size: 13px;
+  color: var(--text);
+  margin: 0;
+}
+
+/* ── Row 2 & 3: two-column grids ── */
+.twoCol {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 600px) {
+  .twoCol {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Wider gap at larger viewports */
+@media (min-width: 1024px) {
+  .root {
+    gap: 20px;
+  }
+
+  .twoCol {
+    gap: 20px;
+  }
+
+  .pageTitle {
+    font-size: 28px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .root {
+    gap: 24px;
+  }
+
+  .twoCol {
+    gap: 24px;
+  }
+}

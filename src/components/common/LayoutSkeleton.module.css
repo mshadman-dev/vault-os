@@ -1,0 +1,96 @@
+@keyframes shimmer {
+  0% {
+    background-position: -400px 0;
+  }
+  100% {
+    background-position: 400px 0;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.04) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.04) 100%
+  );
+  background-size: 800px 100%;
+  animation: shimmer 1.6s infinite linear;
+  border-radius: 6px;
+}
+
+/* ── Root layout mirrors AppLayout ── */
+.root {
+  display: flex;
+  width: 100%;
+  min-height: 100svh;
+  background: var(--shell-bg);
+}
+
+/* ── Sidebar skeleton ── */
+.sidebar {
+  display: none;
+  flex-shrink: 0;
+  width: var(--shell-sidebar-collapsed);
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  background: var(--shell-bg);
+  border-right: 1px solid var(--border);
+  padding: 16px 8px;
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .sidebar {
+    width: var(--shell-sidebar-width);
+    padding: 16px 12px;
+  }
+}
+
+.brandSkeleton {
+  composes: shimmer;
+  height: 24px;
+  width: 70%;
+  margin: 8px 10px 20px;
+}
+
+.navSkeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.navItemSkeleton {
+  composes: shimmer;
+  height: 36px;
+  border-radius: 8px;
+}
+
+/* ── Main area skeleton ── */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.topNav {
+  composes: shimmer;
+  height: var(--shell-topnav-height);
+  border-radius: 0;
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.content {
+  flex: 1;
+}
