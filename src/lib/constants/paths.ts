@@ -4,6 +4,9 @@
  * router definitions, NavLink `to` props, and programmatic navigation.
  */
 export const PATHS = {
+  // ── Public landing ──────────────────────────────────────────────────────
+  LANDING: '/landing',
+
   // ── App routes (protected) ──────────────────────────────────────────────
   DASHBOARD: '/',
   INCOME: '/income',

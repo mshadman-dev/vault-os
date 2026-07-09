@@ -1,0 +1,166 @@
+/**
+ * LandingPage — hero section layout for the public landing experience.
+ *
+ * The canvas is absolutely positioned as a background layer.
+ * All hero text and CTAs sit above it via z-index stacking.
+ */
+
+/* ── Page wrapper ──────────────────────────────────────────────────────────── */
+.page {
+  min-height: 100svh;
+  background: var(--shell-bg);
+  color: var(--text-h);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── Hero section ──────────────────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 100svh;
+  padding: 80px 24px 60px;
+  box-sizing: border-box;
+}
+
+/* Canvas renders behind everything in the hero */
+.canvasWrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* All hero content sits above the canvas */
+.heroContent {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  max-width: 680px;
+}
+
+/* ── Logo ──────────────────────────────────────────────────────────────────── */
+.logoRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logoMark {
+  width: 36px;
+  height: 36px;
+  background: var(--shell-electric-blue);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.logoName {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-h);
+  letter-spacing: -0.4px;
+}
+
+/* ── Headline ──────────────────────────────────────────────────────────────── */
+.headline {
+  font-size: clamp(36px, 6vw, 64px);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -2px;
+  color: var(--text-h);
+  margin: 0;
+}
+
+.headlineAccent {
+  color: var(--shell-electric-blue);
+}
+
+/* ── Sub-headline ──────────────────────────────────────────────────────────── */
+.sub {
+  font-size: clamp(15px, 2vw, 18px);
+  color: var(--text);
+  line-height: 1.6;
+  margin: 0;
+  max-width: 520px;
+}
+
+/* ── CTA buttons ───────────────────────────────────────────────────────────── */
+.cta {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btnPrimary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 28px;
+  background: var(--shell-electric-blue);
+  color: #fff;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: -0.2px;
+  transition: opacity 0.2s;
+}
+
+.btnPrimary:hover {
+  opacity: 0.85;
+}
+
+.btnSecondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 28px;
+  background: transparent;
+  color: var(--text-h);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  letter-spacing: -0.2px;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.btnSecondary:hover {
+  border-color: var(--shell-electric-blue);
+  color: var(--shell-electric-blue);
+}
+
+/* ── Responsive ────────────────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .hero {
+    padding: 60px 20px 40px;
+  }
+
+  .cta {
+    flex-direction: column;
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .btnPrimary,
+  .btnSecondary {
+    width: 100%;
+    text-align: center;
+  }
+}
