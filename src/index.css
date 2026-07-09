@@ -1,130 +1,191 @@
+/* ─── Core imports ─────────────────────────────────────────── */
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "shadcn/tailwind.css";
 @import "@fontsource-variable/geist";
 
+/* ─── Design tokens ────────────────────────────────────────── */
+@import "./styles/tokens.css";
+
+/* ─── Dark-only custom variant ─────────────────────────────── */
+/* Targets elements nested inside .dark — applied unconditionally on <html> */
 @custom-variant dark (&:is(.dark *));
 
+/* ─── Tailwind v4 @theme block ─────────────────────────────── */
+/* Maps CSS custom properties into Tailwind's utility class system */
 @theme inline {
-    --font-heading: var(--font-sans);
-    --font-sans: 'Geist Variable', sans-serif;
-    --color-sidebar-ring: var(--sidebar-ring);
-    --color-sidebar-border: var(--sidebar-border);
-    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-    --color-sidebar-accent: var(--sidebar-accent);
-    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-    --color-sidebar-primary: var(--sidebar-primary);
-    --color-sidebar-foreground: var(--sidebar-foreground);
-    --color-sidebar: var(--sidebar);
-    --color-chart-5: var(--chart-5);
-    --color-chart-4: var(--chart-4);
-    --color-chart-3: var(--chart-3);
-    --color-chart-2: var(--chart-2);
-    --color-chart-1: var(--chart-1);
-    --color-ring: var(--ring);
-    --color-input: var(--input);
-    --color-border: var(--border);
-    --color-destructive: var(--destructive);
-    --color-accent-foreground: var(--accent-foreground);
-    --color-accent: var(--accent);
-    --color-muted-foreground: var(--muted-foreground);
-    --color-muted: var(--muted);
-    --color-secondary-foreground: var(--secondary-foreground);
-    --color-secondary: var(--secondary);
-    --color-primary-foreground: var(--primary-foreground);
-    --color-primary: var(--primary);
-    --color-popover-foreground: var(--popover-foreground);
-    --color-popover: var(--popover);
-    --color-card-foreground: var(--card-foreground);
-    --color-card: var(--card);
-    --color-foreground: var(--foreground);
-    --color-background: var(--background);
-    --radius-sm: calc(var(--radius) * 0.6);
-    --radius-md: calc(var(--radius) * 0.8);
-    --radius-lg: var(--radius);
-    --radius-xl: calc(var(--radius) * 1.4);
-    --radius-2xl: calc(var(--radius) * 1.8);
-    --radius-3xl: calc(var(--radius) * 2.2);
-    --radius-4xl: calc(var(--radius) * 2.6);
+  /* Fonts */
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --font-heading: var(--font-sans);
+
+  /* Colors — VAULT OS palette exposed as Tailwind utilities */
+
+  /* surface-* → bg-surface-0, bg-surface-1, etc. */
+  --color-surface-0: var(--color-surface-0);
+  --color-surface-1: var(--color-surface-1);
+  --color-surface-2: var(--color-surface-2);
+  --color-surface-3: var(--color-surface-3);
+  --color-surface-4: var(--color-surface-4);
+
+  /* border-* */
+  --color-border-default: var(--color-border-default);
+  --color-border-subtle: var(--color-border-subtle);
+  --color-border-strong: var(--color-border-strong);
+
+  /* accent-blue-* */
+  --color-accent-blue: var(--color-accent-blue);
+  --color-accent-blue-hover: var(--color-accent-blue-hover);
+  --color-accent-blue-active: var(--color-accent-blue-active);
+  --color-accent-blue-muted: var(--color-accent-blue-muted);
+
+  /* accent-violet-* */
+  --color-accent-violet: var(--color-accent-violet);
+  --color-accent-violet-hover: var(--color-accent-violet-hover);
+  --color-accent-violet-active: var(--color-accent-violet-active);
+  --color-accent-violet-muted: var(--color-accent-violet-muted);
+
+  /* Semantic status colors */
+  --color-semantic-error: var(--color-semantic-error);
+  --color-semantic-error-muted: var(--color-semantic-error-muted);
+  --color-semantic-warning: var(--color-semantic-warning);
+  --color-semantic-warning-muted: var(--color-semantic-warning-muted);
+  --color-semantic-success: var(--color-semantic-success);
+  --color-semantic-success-muted: var(--color-semantic-success-muted);
+
+  /* shadcn/ui semantic slots — so Tailwind generates bg-background, etc. */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Radius scale */
+  --radius-sm: calc(var(--radius) * 0.5);  /* 4px */
+  --radius-md: calc(var(--radius) * 0.75); /* 6px */
+  --radius-lg: var(--radius);              /* 8px */
+  --radius-xl: calc(var(--radius) * 1.5);  /* 12px */
+  --radius-2xl: calc(var(--radius) * 2);   /* 16px */
+  --radius-3xl: calc(var(--radius) * 3);   /* 24px */
+
+  /* Shadow / Glow utilities */
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-glow-blue: var(--shadow-glow-blue);
+  --shadow-glow-violet: var(--shadow-glow-violet);
 }
 
-:root {
-    --background: oklch(1 0 0);
-    --foreground: oklch(0.145 0 0);
-    --card: oklch(1 0 0);
-    --card-foreground: oklch(0.145 0 0);
-    --popover: oklch(1 0 0);
-    --popover-foreground: oklch(0.145 0 0);
-    --primary: oklch(0.205 0 0);
-    --primary-foreground: oklch(0.985 0 0);
-    --secondary: oklch(0.97 0 0);
-    --secondary-foreground: oklch(0.205 0 0);
-    --muted: oklch(0.97 0 0);
-    --muted-foreground: oklch(0.556 0 0);
-    --accent: oklch(0.97 0 0);
-    --accent-foreground: oklch(0.205 0 0);
-    --destructive: oklch(0.577 0.245 27.325);
-    --border: oklch(0.922 0 0);
-    --input: oklch(0.922 0 0);
-    --ring: oklch(0.708 0 0);
-    --chart-1: oklch(0.87 0 0);
-    --chart-2: oklch(0.556 0 0);
-    --chart-3: oklch(0.439 0 0);
-    --chart-4: oklch(0.371 0 0);
-    --chart-5: oklch(0.269 0 0);
-    --radius: 0.625rem;
-    --sidebar: oklch(0.985 0 0);
-    --sidebar-foreground: oklch(0.145 0 0);
-    --sidebar-primary: oklch(0.205 0 0);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.97 0 0);
-    --sidebar-accent-foreground: oklch(0.205 0 0);
-    --sidebar-border: oklch(0.922 0 0);
-    --sidebar-ring: oklch(0.708 0 0);
-}
-
-.dark {
-    --background: oklch(0.145 0 0);
-    --foreground: oklch(0.985 0 0);
-    --card: oklch(0.205 0 0);
-    --card-foreground: oklch(0.985 0 0);
-    --popover: oklch(0.205 0 0);
-    --popover-foreground: oklch(0.985 0 0);
-    --primary: oklch(0.922 0 0);
-    --primary-foreground: oklch(0.205 0 0);
-    --secondary: oklch(0.269 0 0);
-    --secondary-foreground: oklch(0.985 0 0);
-    --muted: oklch(0.269 0 0);
-    --muted-foreground: oklch(0.708 0 0);
-    --accent: oklch(0.269 0 0);
-    --accent-foreground: oklch(0.985 0 0);
-    --destructive: oklch(0.704 0.191 22.216);
-    --border: oklch(1 0 0 / 10%);
-    --input: oklch(1 0 0 / 15%);
-    --ring: oklch(0.556 0 0);
-    --chart-1: oklch(0.87 0 0);
-    --chart-2: oklch(0.556 0 0);
-    --chart-3: oklch(0.439 0 0);
-    --chart-4: oklch(0.371 0 0);
-    --chart-5: oklch(0.269 0 0);
-    --sidebar: oklch(0.205 0 0);
-    --sidebar-foreground: oklch(0.985 0 0);
-    --sidebar-primary: oklch(0.488 0.243 264.376);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.269 0 0);
-    --sidebar-accent-foreground: oklch(0.985 0 0);
-    --sidebar-border: oklch(1 0 0 / 10%);
-    --sidebar-ring: oklch(0.556 0 0);
-}
-
+/* ─── Base layer ────────────────────────────────────────────── */
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
-    }
-  body {
-    @apply bg-background text-foreground;
-    }
+  /* Force dark mode unconditionally — VAULT OS ships dark-only */
   html {
-    @apply font-sans;
-    }
+    @apply font-sans antialiased;
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-surface-0 text-foreground;
+    /* Prevent CLS from font swap */
+    font-display: swap;
+  }
+
+  /* Box-sizing reset */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  /* Global border color default */
+  * {
+    @apply border-border-default;
+  }
+
+  /* Focus ring — consistent across all interactive elements */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-accent-blue ring-offset-2 ring-offset-surface-0;
+  }
+
+  /* Custom scrollbar — dark themed */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-surface-1);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-border-strong);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-foreground-subtle);
+  }
+
+  /* Remove default button/input appearance */
+  button,
+  input,
+  select,
+  textarea {
+    font-family: inherit;
+  }
+}
+
+/* ─── Utility layer — composable mixins ─────────────────────── */
+@layer utilities {
+  /* Frosted glass surface */
+  .glass {
+    background: rgba(18, 18, 18, 0.7);
+    backdrop-filter: blur(12px) saturate(1.4);
+    -webkit-backdrop-filter: blur(12px) saturate(1.4);
+    border: 1px solid var(--color-border-default);
+  }
+
+  /* Electric blue glow on an element */
+  .glow-blue {
+    box-shadow: var(--shadow-glow-blue);
+  }
+
+  /* Violet glow on an element */
+  .glow-violet {
+    box-shadow: var(--shadow-glow-violet);
+  }
+
+  /* Gradient text — Electric Blue → Violet */
+  .gradient-text {
+    background: linear-gradient(
+      135deg,
+      var(--color-accent-blue) 0%,
+      var(--color-accent-violet) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Screen-reader only text */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
 }

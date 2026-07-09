@@ -1,0 +1,147 @@
+/**
+ * VAULT OS Design Tokens
+ * All values are CSS custom properties consumed by Tailwind v4 @theme
+ * and shadcn/ui primitives. No inline styles — always reference via
+ * Tailwind utility classes.
+ */
+
+:root {
+  /* ─── Color Palette ─────────────────────────────────────── */
+
+  /* Surface hierarchy (matte black) */
+  --color-surface-0: #0a0a0a; /* Background — page root */
+  --color-surface-1: #121212; /* Surface — cards, panels */
+  --color-surface-2: #1a1a1a; /* Surface elevated — dropdowns, popovers */
+  --color-surface-3: #202020; /* Surface high — modals */
+  --color-surface-4: #2a2a2a; /* Surface highest — tooltips */
+
+  /* Border */
+  --color-border-default: #232323;
+  --color-border-subtle: #1c1c1c;
+  --color-border-strong: #303030;
+
+  /* Electric Blue accent */
+  --color-accent-blue: #2f80ed;
+  --color-accent-blue-hover: #4a92f0;
+  --color-accent-blue-active: #1a6fd4;
+  --color-accent-blue-muted: rgba(47, 128, 237, 0.12);
+
+  /* Violet accent */
+  --color-accent-violet: #7b5ea7;
+  --color-accent-violet-hover: #9070bf;
+  --color-accent-violet-active: #674e8f;
+  --color-accent-violet-muted: rgba(123, 94, 167, 0.12);
+
+  /* Foreground / text */
+  --color-foreground: #f0f0f0;
+  --color-foreground-muted: #8a8a8a;
+  --color-foreground-subtle: #555555;
+
+  /* Semantic colors */
+  --color-semantic-error: #e05252;
+  --color-semantic-error-muted: rgba(224, 82, 82, 0.12);
+  --color-semantic-warning: #e0a832;
+  --color-semantic-warning-muted: rgba(224, 168, 50, 0.12);
+  --color-semantic-success: #4caf7d;
+  --color-semantic-success-muted: rgba(76, 175, 125, 0.12);
+
+  /* ─── shadcn/ui variable overrides ──────────────────────── */
+  /* Maps VAULT OS palette into shadcn semantic slots */
+
+  --background: #0a0a0a;
+  --foreground: #f0f0f0;
+
+  --card: #121212;
+  --card-foreground: #f0f0f0;
+
+  --popover: #1a1a1a;
+  --popover-foreground: #f0f0f0;
+
+  --primary: #2f80ed;
+  --primary-foreground: #ffffff;
+
+  --secondary: #1a1a1a;
+  --secondary-foreground: #f0f0f0;
+
+  --muted: #1c1c1c;
+  --muted-foreground: #8a8a8a;
+
+  --accent: #232323;
+  --accent-foreground: #f0f0f0;
+
+  --destructive: #e05252;
+  --destructive-foreground: #ffffff;
+
+  --border: #232323;
+  --input: #1a1a1a;
+  --ring: #2f80ed;
+
+  /* ─── Radius scale ───────────────────────────────────────── */
+  --radius: 0.5rem; /* 8px base */
+
+  /* ─── Shadow / Glow ─────────────────────────────────────── */
+  --shadow-glow-blue: 0 0 16px rgba(47, 128, 237, 0.35),
+    0 0 4px rgba(47, 128, 237, 0.2);
+  --shadow-glow-violet: 0 0 16px rgba(123, 94, 167, 0.35),
+    0 0 4px rgba(123, 94, 167, 0.2);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.7);
+
+  /* ─── Typography scale ───────────────────────────────────── */
+  --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono Variable", ui-monospace, "Cascadia Code",
+    "Source Code Pro", monospace;
+
+  /* Font size ramp (matches Tailwind defaults — tokens for reference) */
+  --text-xs: 0.75rem; /* 12px */
+  --text-sm: 0.875rem; /* 14px */
+  --text-base: 1rem; /* 16px */
+  --text-lg: 1.125rem; /* 18px */
+  --text-xl: 1.25rem; /* 20px */
+  --text-2xl: 1.5rem; /* 24px */
+  --text-3xl: 1.875rem; /* 30px */
+  --text-4xl: 2.25rem; /* 36px */
+
+  /* Font weight ramp */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Line heights */
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+
+  /* Letter spacing */
+  --tracking-tight: -0.025em;
+  --tracking-normal: 0em;
+  --tracking-wide: 0.025em;
+  --tracking-wider: 0.05em;
+  --tracking-widest: 0.1em;
+
+  /* ─── Spacing / sizing (base-8 scale) ───────────────────── */
+  /* Tailwind's default spacing scale is used directly.         */
+  /* These tokens exist for semantic reference in this project. */
+  --space-1: 0.25rem; /* 4px */
+  --space-2: 0.5rem; /* 8px */
+  --space-3: 0.75rem; /* 12px */
+  --space-4: 1rem; /* 16px */
+  --space-6: 1.5rem; /* 24px */
+  --space-8: 2rem; /* 32px */
+  --space-12: 3rem; /* 48px */
+  --space-16: 4rem; /* 64px */
+  --space-20: 5rem; /* 80px */
+
+  /* ─── Z-index scale ─────────────────────────────────────── */
+  --z-base: 0;
+  --z-raised: 10;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-overlay: 300;
+  --z-modal: 400;
+  --z-toast: 500;
+  --z-tooltip: 600;
+}
