@@ -1,0 +1,146 @@
+/**
+ * LandingPage — root layout for the public landing page.
+ * Dark background matching the app shell.
+ */
+
+.root {
+  min-height: 100svh;
+  background: #0a0a0a;
+  color: #9ca3af;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Top navigation bar ── */
+.topNav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  height: 60px;
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  box-sizing: border-box;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.logoMark {
+  width: 30px;
+  height: 30px;
+  background: #007aff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.brandName {
+  font-size: 16px;
+  font-weight: 600;
+  color: #f3f4f6;
+  letter-spacing: -0.2px;
+}
+
+.navActions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.navLink {
+  font-size: 14px;
+  color: #9ca3af;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 6px 2px;
+  transition: color 0.15s ease;
+}
+
+.navLink:hover {
+  color: #f3f4f6;
+}
+
+.navLink:focus-visible {
+  outline: 2px solid #007aff;
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+.navCta {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 18px;
+  border-radius: 8px;
+  background: #007aff;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  text-decoration: none;
+  transition: background 0.15s ease;
+  white-space: nowrap;
+}
+
+.navCta:hover {
+  background: #0066d6;
+}
+
+.navCta:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* ── Section divider ── */
+.divider {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* ── Main content area ── */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-top: 60px; /* offset for fixed nav */
+}
+
+/* Skip link for keyboard users */
+.skipLink {
+  position: absolute;
+  top: -100%;
+  left: 24px;
+  padding: 8px 16px;
+  border-radius: 6px;
+  background: #007aff;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  z-index: 200;
+  transition: top 0.15s ease;
+}
+
+.skipLink:focus {
+  top: 8px;
+}
