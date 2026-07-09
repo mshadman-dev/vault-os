@@ -3,12 +3,13 @@
  *
  * The canvas is absolutely positioned as a background layer.
  * All hero text and CTAs sit above it via z-index stacking.
+ * The overlay covers everything for the fade-to-black unlock transition.
  */
 
 /* ── Page wrapper ──────────────────────────────────────────────────────────── */
 .page {
   min-height: 100svh;
-  background: var(--shell-bg);
+  background: #050609;
   color: var(--text-h);
   display: flex;
   flex-direction: column;
@@ -45,6 +46,18 @@
   align-items: center;
   gap: 24px;
   max-width: 680px;
+  /* transform-origin for GSAP scroll parallax */
+  will-change: transform, opacity;
+}
+
+/* ── Overlay — fade-to-black during unlock transition ──────────────────────── */
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  background: #000;
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* ── Logo ──────────────────────────────────────────────────────────────────── */
@@ -71,7 +84,7 @@
 .logoName {
   font-size: 20px;
   font-weight: 600;
-  color: var(--text-h);
+  color: #f0f2f8;
   letter-spacing: -0.4px;
 }
 
@@ -81,7 +94,7 @@
   font-weight: 700;
   line-height: 1.08;
   letter-spacing: -2px;
-  color: var(--text-h);
+  color: #f0f2f8;
   margin: 0;
 }
 
@@ -92,7 +105,7 @@
 /* ── Sub-headline ──────────────────────────────────────────────────────────── */
 .sub {
   font-size: clamp(15px, 2vw, 18px);
-  color: var(--text);
+  color: #8892a4;
   line-height: 1.6;
   margin: 0;
   max-width: 520px;
@@ -110,7 +123,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 12px 28px;
+  padding: 13px 30px;
   background: var(--shell-electric-blue);
   color: #fff;
   border-radius: 10px;
@@ -118,49 +131,82 @@
   font-weight: 600;
   text-decoration: none;
   letter-spacing: -0.2px;
-  transition: opacity 0.2s;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.15s;
 }
 
 .btnPrimary:hover {
-  opacity: 0.85;
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+.btnPrimary:active {
+  transform: translateY(0);
 }
 
 .btnSecondary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 12px 28px;
+  padding: 13px 30px;
   background: transparent;
-  color: var(--text-h);
-  border: 1px solid var(--border);
+  color: #c8d0e0;
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 10px;
   font-size: 15px;
   font-weight: 500;
   text-decoration: none;
   letter-spacing: -0.2px;
-  transition: border-color 0.2s, color 0.2s;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, transform 0.15s;
 }
 
 .btnSecondary:hover {
-  border-color: var(--shell-electric-blue);
+  border-color: rgba(0, 122, 255, 0.6);
   color: var(--shell-electric-blue);
+  transform: translateY(-1px);
+}
+
+.btnSecondary:active {
+  transform: translateY(0);
 }
 
 /* ── Responsive ────────────────────────────────────────────────────────────── */
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .hero {
     padding: 60px 20px 40px;
+    justify-content: flex-end;
+    padding-bottom: 72px;
   }
 
+  .heroContent {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
   .cta {
     flex-direction: column;
     width: 100%;
-    max-width: 280px;
+    max-width: 300px;
   }
 
   .btnPrimary,
   .btnSecondary {
     width: 100%;
     text-align: center;
+  }
+}
+
+/* ── Reduced motion overrides ──────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .heroContent {
+    will-change: auto;
+  }
+
+  .btnPrimary,
+  .btnSecondary {
+    transition: none;
   }
 }

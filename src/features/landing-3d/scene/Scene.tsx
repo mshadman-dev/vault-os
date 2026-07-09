@@ -1,57 +1,88 @@
 /**
- * Scene — the minimal Three.js scene graph for the landing experience.
+ * Scene — the Three.js scene graph for the landing experience.
  *
- * Contains only lighting and structural placeholders.
- * No geometry, no meshes, no animations — those come in later phases.
+ * Wires together:
+ *  - PerspectiveCamera (makeDefault)
+ *  - CameraRig (entrance + idle GSAP animations, exposes setIdlePaused)
+ *  - Lights (full cinematic rig with interior PointLight ref)
+ *  - VaultDoor (full procedural vault geometry, exposes doorGroup/wheel/bolts refs)
+ *  - DustParticles (procedural floating dust motes)
+ *  - GroundPlane (subtle reflective ground surface)
+ *  - useUnlockSequence (master GSAP timeline, exposed to parent via onUnlockReady)
  */
-import { useRef } from 'react'
-import { PerspectiveCamera, Environment } from '@react-three/drei'
-import type { Group } from 'three'
+import { useRef, useEffect } from 'react'
+import { PerspectiveCamera } from '@react-three/drei'
+import type { PerspectiveCamera as ThreePerspectiveCamera, PointLight } from 'three'
+import { Lights }          from '../lights/Lights'
+import { VaultDoor }       from '../vault/VaultDoor'
+import type { VaultDoorRefs } from '../vault/VaultDoor'
+import { CameraRig }       from '../camera/CameraRig'
+import type { CameraRigHandle } from '../camera/CameraRig'
+import { DustParticles }   from './DustParticles'
+import { GroundPlane }     from './GroundPlane'
+import { useUnlockSequence } from '../hooks/useUnlockSequence'
 
 interface SceneProps {
-  reducedMotion?: boolean
+  reducedMotion?:  boolean
+  overlayRef:      React.RefObject<HTMLDivElement | null>
+  onUnlockReady:   (trigger: (navigateFn: () => void) => void) => void
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars -- will be consumed when animations are added
-export function Scene({ reducedMotion: _reducedMotion = false }: SceneProps) {
-  /** Empty group that future vault model phases will populate. */
-  const vaultGroupRef = useRef<Group>(null)
+export function Scene({ reducedMotion = false, overlayRef, onUnlockReady }: SceneProps) {
+  const cameraRef     = useRef<ThreePerspectiveCamera>(null)
+  const vaultRefs     = useRef<VaultDoorRefs>(null)
+  const interiorLight = useRef<PointLight>(null)
+  const cameraRigRef  = useRef<CameraRigHandle>(null)
+
+  const { triggerUnlock } = useUnlockSequence({
+    vaultRefs,
+    cameraRef,
+    interiorLight,
+    setIdlePaused: (paused) => cameraRigRef.current?.setIdlePaused(paused),
+    overlayRef,
+    reducedMotion,
+  })
+
+  // Expose trigger to parent exactly once, after the component tree is ready.
+  // useEffect runs after render so we're outside render — safe to schedule.
+  const hasRegistered = useRef(false)
+  useEffect(() => {
+    if (hasRegistered.current) return
+    hasRegistered.current = true
+    onUnlockReady(triggerUnlock)
+  // triggerUnlock and onUnlockReady are both stable (useCallback / passed once)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <>
-      {/* ── Camera ─────────────────────────────────────────────────────── */}
       <PerspectiveCamera
+        ref={cameraRef}
         makeDefault
-        position={[0, 0, 6]}
-        fov={50}
+        position={[0, 0, 7.5]}
+        fov={45}
         near={0.1}
         far={100}
       />
 
-      {/* ── Ambient fill ───────────────────────────────────────────────── */}
-      <ambientLight intensity={0.4} />
+      <CameraRig
+        ref={cameraRigRef}
+        cameraRef={cameraRef}
+        reducedMotion={reducedMotion}
+      >
+        <Lights ref={interiorLight} />
 
-      {/* ── Primary directional key light ──────────────────────────────── */}
-      <directionalLight
-        position={[4, 6, 4]}
-        intensity={1.2}
-        castShadow={false}
-      />
+        {/* Deep space fog — tightened for premium feel */}
+        <fog attach="fog" args={['#050609', 18, 42]} />
 
-      {/* ── Subtle rim/fill light ──────────────────────────────────────── */}
-      <directionalLight
-        position={[-3, -2, -4]}
-        intensity={0.3}
-      />
+        <group name="vault-root">
+          <VaultDoor ref={vaultRefs} />
+        </group>
 
-      {/* ── Environment — city HDR placeholder at near-zero intensity ──── */}
-      <Environment preset="city" background={false} environmentIntensity={0.1} />
+        <GroundPlane />
 
-      {/* ── Atmospheric fog ────────────────────────────────────────────── */}
-      <fog attach="fog" args={['#0a0a0a', 12, 30]} />
-
-      {/* ── Vault model mount-point (populated in future phases) ────────── */}
-      <group ref={vaultGroupRef} name="vault-root" />
+        <DustParticles count={140} reducedMotion={reducedMotion} />
+      </CameraRig>
     </>
   )
 }
